@@ -1,0 +1,6 @@
+database {
+  driver   = "com.mysql.jdbc.Driver"
+  url      = "jdbc:mysql://host/database"
+  username = "user"
+  password = "pass"
+}
