@@ -7,10 +7,7 @@ case class MyConfig(driver: String, url: String, username: String, password: Str
 object App {
   def main(args: Array[String]) {
 
-    // load some configuration
-    val configPath = "config.hocon"
-
-    val config: Config = loadImmutable(List(ClassPathResource(configPath).required)).run
+    val config: Config = loadImmutable(List(classPathConfig)).run
 
     val driver: String = config.require[String]("database.driver")
     val url: String = config.require[String]("database.url")
@@ -20,5 +17,11 @@ object App {
     val myConfig = MyConfig(driver, url, username, password)
     println(myConfig)
   }
+
+  def classPathConfig = {
+    val configPath = "config.hocon"
+    ClassPathResource(configPath).required
+  }
+
 }
 
