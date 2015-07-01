@@ -16,6 +16,7 @@ object App {
       val password: String = config.require[String]("database.password")
 
       val myConfig = MyConfig(driver, url, username, password)
+      println(s"cwd $cwd")
       println(myConfig)
     }.run
   }
@@ -24,6 +25,8 @@ object App {
     val configPath = "config.hocon"
     ClassPathResource(configPath).required
   }
+
+  def cwd = new java.io.File(".").getCanonicalPath()
 
 }
 
